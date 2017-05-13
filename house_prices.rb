@@ -3,7 +3,7 @@ require 'date'
 # A hash of all house prices and transactions
 # Data from the Land Registry and transformed through Postcodes.io
 
-house_prices_by_area = {["Basingstoke and Deane", "Tadley South"]=>
+house_price_by_area = {["Basingstoke and Deane", "Tadley South"]=>
   {:count=>1,
    :average=>94000,
    :transactions=>
@@ -68,19 +68,19 @@ Date.parse("1995-06-23")]]}}
 
 districts, wards, prices, dates = [], [], [], []
 
-house_prices_by_area.keys.each do |location|
+house_price_by_area.keys.each do |location|
   districts << location[0]
   wards << location[1]
 end
 
-house_prices_by_area.each do |location, info|
+house_price_by_area.each do |location, info|
   prices << info[:transactions][0][0]
 end
 
-house_prices_by_area.each do |location, info|
+house_price_by_area.each do |location, info|
   dates << (info[:transactions][0][2]).to_s.split("-").reverse.join("/")
 end
 
-house_prices_by_area.length.times.with_index do |index|
+house_price_by_area.length.times.with_index do |index|
   puts "A house was sold in #{districts[index]}, #{wards[index]} for £#{prices[index]} on #{dates[index]}"
 end
